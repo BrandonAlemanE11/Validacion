@@ -12,41 +12,65 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="71dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="91dp"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.091" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="330dp"
-        android:layout_height="38dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="62dp"
         android:text="Ingresa el codigo de validacion"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="189dp" />
+        app:layout_constraintBottom_toTopOf="@+id/etnCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_slideshow" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etnCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
         android:ems="10"
         android:inputType="number"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="289dp" />
+        app:layout_constraintStart_toStartOf="@+id/edcEmail"
+        app:layout_constraintTop_toBottomOf="@+id/edcEmail" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnValidar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="257dp"
         android:text="Validar"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="426dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etnCode"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/edcEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
