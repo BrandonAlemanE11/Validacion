@@ -48,7 +48,7 @@ public class SlideshowFragment extends Fragment {
                 String email = edcEmail.getText().toString().trim();
                 String Code = etnCode.getText().toString().trim();
                 if(!email.isEmpty() && !Code.isEmpty()){
-                    Toast.makeText(getContext(),"llena todos los campos",Toast.LENGTH_LONG).show();
+                    
                 }
                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
