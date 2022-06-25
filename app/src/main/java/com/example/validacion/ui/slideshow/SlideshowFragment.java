@@ -47,35 +47,48 @@ public class SlideshowFragment extends Fragment {
             public void onClick(View view) {
                 String email = edcEmail.getText().toString().trim();
                 String Code = etnCode.getText().toString().trim();
-                if(!email.isEmpty() || !Code.isEmpty()){
-                    Toast.makeText(getContext(), "Completa los Campos", Toast.LENGTH_SHORT).show();
-                }
-                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-                final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-                httpClient.addInterceptor(logging);
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://eyiogthd.lucusvirtual.es/api/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(httpClient.build())
-                        .build();
-                validarApi val = retrofit.create(validarApi.class);
-                Call<validar> call = val.VALIDAR_CALL(email, Code);
-                call.enqueue(new Callback<validar>() {
-                    @Override
-                    public void onResponse(Call<validar> call, Response<validar> response) {
-                        if(response.isSuccessful() && response.body() != null){
-                            Toast.makeText(getContext(), "Correo validado con exito", Toast.LENGTH_SHORT).show();
-                            edcEmail.getText().clear();
-                            etnCode.getText().clear();
+                if (email.isEmpty() && Code.isEmpty()) {
+                    Toast.makeText(getContext(), "llena los campos, estan vacios", Toast.LENGTH_SHORT).show();
+                } else {
+                    if (email.isEmpty()) {
+                        Toast.makeText(getContext(), "Falta campo, Ingresa correo", Toast.LENGTH_SHORT).show();
+                    } else {
+                        if (Code.isEmpty()) {
+                            Toast.makeText(getContext(), "Falta campo, Ingresa codigo", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            if (!email.isEmpty() && !Code.isEmpty()) {
+                                logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+                                final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+                                httpClient.addInterceptor(logging);
+                                Retrofit retrofit = new Retrofit.Builder()
+                                        .baseUrl("https://eyiogthd.lucusvirtual.es/api/")
+                                        .addConverterFactory(GsonConverterFactory.create())
+                                        .client(httpClient.build())
+                                        .build();
+                                validarApi val = retrofit.create(validarApi.class);
+                                Call<validar> call = val.VALIDAR_CALL(email, Code);
+                                call.enqueue(new Callback<validar>() {
+                                    @Override
+                                    public void onResponse(Call<validar> call, Response<validar> response) {
+                                        if (response.isSuccessful() && response.body() != null) {
+                                            Toast.makeText(getContext(), "Correo validado con exito", Toast.LENGTH_SHORT).show();
+                                            edcEmail.getText().clear();
+                                            etnCode.getText().clear();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<validar> call, Throwable t) {
+                                        Toast.makeText(getContext(), "Error conexion", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     }
-
-                    @Override
-                    public void onFailure(Call<validar> call, Throwable t) {
-                        Toast.makeText(getContext(), "Error conexion", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                }
             }
         });
         return root;
