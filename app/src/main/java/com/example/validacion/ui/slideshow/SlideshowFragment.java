@@ -47,18 +47,18 @@ public class SlideshowFragment extends Fragment {
             public void onClick(View view) {
                 String email = edcEmail.getText().toString().trim();
                 String Code = etnCode.getText().toString().trim();
-
-                if (email.isEmpty() && Code.isEmpty()) {
-                    Toast.makeText(getContext(), "llena los campos, estan vacios", Toast.LENGTH_SHORT).show();
-                } else {
-                    if (email.isEmpty()) {
-                        Toast.makeText(getContext(), "Falta campo, Ingresa correo", Toast.LENGTH_SHORT).show();
-                    } else {
-                        if (Code.isEmpty()) {
-                            Toast.makeText(getContext(), "Falta campo, Ingresa codigo", Toast.LENGTH_SHORT).show();
+                if(email.isEmpty() && Code.isEmpty()){
+                    Toast.makeText(getContext(), "llena los campos, Estan vacios", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(email.isEmpty()){
+                        Toast.makeText(getContext(), "Faltan campos, Ingresa tu correo", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        if(Code.isEmpty()){
+                            Toast.makeText(getContext(), "Faltan campos, Ingresa tu correo", Toast.LENGTH_SHORT).show();
                         }
-                        else {
-                            if (!email.isEmpty() && !Code.isEmpty()) {
+                        else{
+                            if(!email.isEmpty() && !Code.isEmpty()){
                                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
                                 final OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
@@ -73,8 +73,7 @@ public class SlideshowFragment extends Fragment {
                                 call.enqueue(new Callback<validar>() {
                                     @Override
                                     public void onResponse(Call<validar> call, Response<validar> response) {
-                                        if (response.isSuccessful() && response.body() != null) {
-                                            Toast.makeText(getContext(), "Correo validado con exito", Toast.LENGTH_SHORT).show();
+                                        if(response.isSuccessful() && response.body() != null){
                                             edcEmail.getText().clear();
                                             etnCode.getText().clear();
                                         }
@@ -82,7 +81,7 @@ public class SlideshowFragment extends Fragment {
 
                                     @Override
                                     public void onFailure(Call<validar> call, Throwable t) {
-                                        Toast.makeText(getContext(), "Error conexion", Toast.LENGTH_SHORT).show();
+
                                     }
                                 });
                             }
