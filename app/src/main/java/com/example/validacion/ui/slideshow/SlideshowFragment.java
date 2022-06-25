@@ -48,7 +48,7 @@ public class SlideshowFragment extends Fragment {
                 String email = edcEmail.getText().toString().trim();
                 String Code = etnCode.getText().toString().trim();
                 if(!email.isEmpty() && !Code.isEmpty()){
-
+                    Toast.makeText(getContext(),"llena todos los campos",Toast.LENGTH_LONG).show();
                 }
                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -67,12 +67,13 @@ public class SlideshowFragment extends Fragment {
                         if(response.isSuccessful() && response.body() != null){
                             edcEmail.getText().clear();
                             etnCode.getText().clear();
+                            Toast.makeText(getContext(),"Correo validado correctamente",Toast.LENGTH_LONG).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<validar> call, Throwable t) {
-
+                         Toast.makeText(getContext(),"Error de conexion",Toast.LENGTH_LONG).show();
                     }
                 });
             }
