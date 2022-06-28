@@ -76,6 +76,7 @@ public class SlideshowFragment extends Fragment {
                                         if(response.isSuccessful() && response.body() != null){
                                             edcEmail.getText().clear();
                                             etnCode.getText().clear();
+                                            Toast.makeText(getContext(), "Correo Validado con exito", Toast.LENGTH_SHORT).show();
                                         }
                                     }
 
